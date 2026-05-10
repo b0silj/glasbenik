@@ -3,31 +3,90 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pojoči dohtarji | Kontakt</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+    <title>Kontakt</title>
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="css/style.css">
+   <!-- <link rel="stylesheet" href="scss/style.scss"> -->
+
   </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark site-nav sticky-top">
-      <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-          <img src="img/logo.png" alt="Pojoči dohtarji" class="brand-logo">
-          <span>POJOČI DOHTARJI</span>
+  <body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg site-nav">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="img/logo.png" alt="Logotip Pojoči dohtarji">
+          <span>Pojoči dohtarji</span>
         </a>
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Odpri meni">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Odpri meni">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="mainMenu">
-          <div class="navbar-nav ms-auto text-end py-3">
-            <a class="nav-link" href="index.html">DOMOV</a>
-            <a class="nav-link" href="galerija.html">GALERIJA</a>
-            <a class="nav-link" href="spili.html">ŠPILI</a>
-            <a class="nav-link active" aria-current="page" href="kontakt.html">KONTAKT</a>
-          </div>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Domov</a></li>
+            <li class="nav-item"><a class="nav-link" href="galerija.html">Galerija</a></li>
+            <li class="nav-item"><a class="nav-link" href="spili.html">Špili</a></li>
+            <li class="nav-item"><a class="nav-link active" href="kontakt.html">Kontakt</a></li>
+          </ul>
         </div>
       </div>
     </nav>
-    <main></main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  </body>
+
+    <main class="flex-grow-1">
+      <section class="skupina contact-skupina">
+        <div class="container text-center">
+          <img src="img/gallery-4.png" class="skupina-img contact-skupina-img" alt="Pojoči dohtarji maska">
+          <a href="#kontakt" class="gumb skupina-btn">Kontakt</a>
+        </div>
+      </section>
+
+
+
+     <section id="kontakt" class="container contact-wrap">
+        <form class="contact-form">
+          <h1>Kontakt</h1>
+          <label for="name">Ime in priimek</label>
+          <input id="name" class="form-control" type="text" placeholder="Vpišite ime in priimek">
+          <label for="email">E-mail</label>
+          <input id="email" class="form-control" type="email" placeholder="Vpišite email">
+          <label for="phone">Telefonska številka</label>
+          <input id="phone" class="form-control" type="tel" placeholder="Vpišite telefonsko številko">
+          <label for="message">Dodatno sporočilo</label>
+          <textarea id="message" class="form-control" rows="4" placeholder="Vaše vprašanje"></textarea>
+        </br>
+          <div class="d-grid gap-2">
+            <button class="btn btn-outline-primary" type="button">POŠLJI</button>
+            
+          </div>
+        </form>
+
+        <div class="contact-info-title gumb">Dodatni kontakt:</div>
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-6">
+            <div class="contact-info">
+              <h2>Telefonska številka:</h2>
+              <p>+00386 068 645 102</p>
+              <h2>E-mail:</h2>
+              <p><a href="mailto:pojoci.dohtarji@gmail.com">pojoci.dohtarji@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="map-card">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d107038.70104609027!2d14.449697753339155!3d46.06621024459189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476531f5969886d1%3A0x400f81c823fec20!2sLjubljana!5e1!3m2!1ssl!2ssi!4v1778088426606!5m2!1ssl!2ssi" width="300" height="190" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer mt-auto">
+      <p>Sledite nam!</p>
+      <div class="social-strip">
+        <a href="https://www.youtube.com/@pojocidohtarji" target="_blank" rel="noreferrer"><img src="img/youtube.png" alt="YouTube"></a>
+        <a href="https://www.facebook.com/p/Ansambel-Pojo%C4%8Di-Dohtarji-100086853823907/" target="_blank" rel="noreferrer"><img src="img/facebook.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/pojoci.dohtarji/" target="_blank" rel="noreferrer"><img src="img/instagram.png" alt="Instagram"></a>
+        <a href="https://open.spotify.com/" target="_blank" rel="noreferrer"><img src="img/spotify.png" alt="Spotify"></a>
+      </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>  
+</body>
 </html>
