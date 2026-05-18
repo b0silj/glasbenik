@@ -3,86 +3,78 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pojoči dohtarji | Galerija</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+    <title>Galerija</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="css/style.css">
+   <!-- <link rel="stylesheet" href="scss/style.scss"> -->
   </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark site-nav sticky-top">
-      <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-          <img src="img/logo.png" alt="Pojoči dohtarji" class="brand-logo">
-          <span>POJOČI DOHTARJI</span>
+  <body class="d-flex flex-column min-vh-100">
+
+  <nav class="navbar navbar-expand-lg site-nav">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="img/logo.png" alt="Logotip Pojoči dohtarji">
+          <span>Pojoči dohtarji</span>
         </a>
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Odpri meni">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Odpri meni">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="mainMenu">
-          <div class="navbar-nav ms-auto text-end py-3">
-            <a class="nav-link" href="index.html">DOMOV</a>
-            <a class="nav-link active" aria-current="page" href="galerija.html">GALERIJA</a>
-            <a class="nav-link" href="spili.html">ŠPILI</a>
-            <a class="nav-link" href="kontakt.html">KONTAKT</a>
-          </div>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Domov</a></li>
+            <li class="nav-item"><a class="nav-link active" href="galerija.html">Galerija</a></li>
+            <li class="nav-item"><a class="nav-link" href="spili.html">Špili</a></li>
+            <li class="nav-item"><a class="nav-link" href="kontakt.html">Kontakt</a></li>
+          </ul>
         </div>
       </div>
     </nav>
 
-    <main class="gallery-page">
-      <section class="container site-shell py-5">
-        <div class="section-title title-blue">GALERIJA</div>
-        <ul class="nav gallery-tabs mt-3" role="tablist">
-          <li class="nav-item flex-fill"><button class="nav-link active w-100" data-bs-toggle="tab" data-bs-target="#foto" type="button" role="tab">FOTO</button></li>
-          <li class="nav-item flex-fill"><button class="nav-link w-100" data-bs-toggle="tab" data-bs-target="#video" type="button" role="tab">VIDEO</button></li>
-        </ul>
 
-        <div class="tab-content gallery-shell mt-4">
-          <div class="tab-pane fade show active" id="foto" role="tabpanel">
-            <div class="gallery-grid">
-              <button class="gallery-item" data-full="img/gallery-1.png" data-bs-toggle="modal" data-bs-target="#imageModal"><img src="img/gallery-1.png" alt="Fotografija 1"></button>
-              <button class="gallery-item" data-full="img/gallery-2.png" data-bs-toggle="modal" data-bs-target="#imageModal"><img src="img/gallery-2.png" alt="Fotografija 2"></button>
-              <button class="gallery-item" data-full="img/gallery-3.png" data-bs-toggle="modal" data-bs-target="#imageModal"><img src="img/gallery-3.png" alt="Fotografija 3"></button>
-              <button class="gallery-item" data-full="img/gallery-4.png" data-bs-toggle="modal" data-bs-target="#imageModal"><img src="img/gallery-4.png" alt="Fotografija 4"></button>
-              <button class="gallery-item" data-full="img/gallery-5.png" data-bs-toggle="modal" data-bs-target="#imageModal"><img src="img/gallery-5.png" alt="Fotografija 5"></button>
-              <button class="gallery-item" data-full="img/gallery-6.png" data-bs-toggle="modal" data-bs-target="#imageModal"><img src="img/gallery-6.png" alt="Fotografija 6"></button>
-              <button class="gallery-item" data-full="img/gallery-7.png" data-bs-toggle="modal" data-bs-target="#imageModal"><img src="img/gallery-7.png" alt="Fotografija 7"></button>
-              <button class="gallery-item" data-full="img/gallery-8.png" data-bs-toggle="modal" data-bs-target="#imageModal"><img src="img/gallery-8.png" alt="Fotografija 8"></button>
-            </div>
+    <main class="flex-grow-1">
+      <section class="container page-panel gallery-intro">
+        <div class="gallery-toolbar">
+          <h1>Oglejte si naša doživetja!</h1>
+          <div>
+            <a href="#foto" class="gumb">Foto</a>
+            <a href="#video" class="gumb">Video</a>
           </div>
-          <div class="tab-pane fade" id="video" role="tabpanel">
-            <div class="video-list">
-              <a class="video-card" href="https://www.youtube.com/watch?v=x8ts3_fmJLA" target="_blank" rel="noreferrer"><img src="img/video-1.png" alt="Video 1"><span class="play-button"></span></a>
-              <a class="video-card" href="https://www.youtube.com/watch?v=rT6nBBWt0oM" target="_blank" rel="noreferrer"><img src="img/video-2.png" alt="Video 2"><span class="play-button"></span></a>
-              <a class="video-card" href="https://www.youtube.com/watch?v=uoiidudg790" target="_blank" rel="noreferrer"><img src="img/video-3.png" alt="Video 3"><span class="play-button"></span></a>
-              <a class="video-card" href="https://www.youtube.com/watch?v=TmUmUQBdAcc" target="_blank" rel="noreferrer"><img src="img/video-4.png" alt="Video 4"><span class="play-button"></span></a>
-            </div>
-          </div>
+        </div>
+      </section>
+
+      <section id="foto" class="container page-panel">
+        <div class="row g-4">
+          <div class="col-md-6"><img class="gallery-img" src="img/gallery-1.png" alt="Pojoči dohtarji"></div>
+          <div class="col-md-6"><img class="gallery-img" src="img/gallery-3.png" alt="Praznični nastop"></div>
+          <div class="col-md-6"><img class="gallery-img" src="img/gallery-2.png" alt="Skupina s harmoniko"></div>
+          <div class="col-md-6"><img class="gallery-img" src="img/gallery-4.png" alt="Maska in nastop"></div>
+          <div class="col-md-6"><img class="gallery-img" src="img/gallery-5.png" alt="Utrinek s poti"></div>
+          <div class="col-md-6"><img class="gallery-img" src="img/gallery-6.png" alt="Druženje po nastopu"></div>
+          <div class="col-md-6"><img class="gallery-img" src="img/gallery-7.png" alt="Nastop na prostem"></div>
+          <div class="col-md-6"><img class="gallery-img" src="img/gallery-8.png" alt="Glasbeni nastop"></div>
+        </div>
+      </section>
+
+      <section id="video" class="container page-panel video-panel">
+        <div class="row g-4">
+          <div class="col-md-6"> <a href="https://www.youtube.com/watch?v=x8ts3_fmJLA"><img class="video-thumb" src="img/video-1.png" alt="Video 1"></a></div>
+          <div class="col-md-6"><a href="https://www.youtube.com/watch?v=rT6nBBWt0oM"><img class="video-thumb" src="img/video-2.png" alt="Video 2"></a></div>
+          <div class="col-md-6"><a href="https://www.youtube.com/watch?v=uoiidudg790"><img class="video-thumb" src="img/video-3.png" alt="Video 3"></a></div>
+          <div class="col-md-6"><a href="https://www.youtube.com/watch?v=TmUmUQBdAcc"><img class="video-thumb" src="img/video-4.png" alt="Video 4"></a></div>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container site-shell text-center">
-        <h2>SLEDITE NAM!</h2>
-        <div class="social-strip">
-          <a href="https://www.youtube.com/@pojocidohtarji" target="_blank" rel="noreferrer" aria-label="YouTube"><img src="img/youtube.png" alt=""></a>
-          <a href="https://www.facebook.com/p/Ansambel-Pojo%C4%8Di-Dohtarji-100086853823907/" target="_blank" rel="noreferrer" aria-label="Facebook"><img src="img/facebook.png" alt=""></a>
-          <a href="https://www.instagram.com/pojoci.dohtarji/" target="_blank" rel="noreferrer" aria-label="Instagram"><img src="img/instagram.png" alt=""></a>
-          <a href="https://open.spotify.com/" target="_blank" rel="noreferrer" aria-label="Spotify"><img src="img/spotify.png" alt=""></a>
-        </div>
+    <footer class="site-footer mt-auto">
+      <p>Sledite nam!</p>
+      <div class="social-strip">
+        <a href="https://www.youtube.com/@pojocidohtarji" target="_blank" rel="noreferrer"><img src="img/youtube.png" alt="YouTube"></a>
+        <a href="https://www.facebook.com/p/Ansambel-Pojo%C4%8Di-Dohtarji-100086853823907/" target="_blank" rel="noreferrer"><img src="img/facebook.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/pojoci.dohtarji/" target="_blank" rel="noreferrer"><img src="img/instagram.png" alt="Instagram"></a>
+        <a href="https://open.spotify.com/" target="_blank" rel="noreferrer"><img src="img/spotify.png" alt="Spotify"></a>
       </div>
     </footer>
 
-    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-transparent border-0">
-          <button type="button" class="btn-close btn-close-white ms-auto mb-2" data-bs-dismiss="modal" aria-label="Zapri"></button>
-          <img src="" alt="Povečana fotografija" class="modal-image">
-        </div>
-      </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script src="main.js"></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
