@@ -10,7 +10,10 @@
 
   </head>
   <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-lg site-nav">
+    <?php 
+    $currentpage = "index";
+    include 'nav.php';?>
+   <!-- <nav class="navbar navbar-expand-lg site-nav">
       <div class="container">
         <a class="navbar-brand" href="index.html">
           <img src="img/logo.png" alt="Logotip Pojoči dohtarji">
@@ -28,7 +31,7 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav>-->
 
     <main class="flex-grow-1">
       <section class="skupina skupina-home">
@@ -78,7 +81,9 @@
       </section>
     </main>
 
-    <footer class="site-footer mt-auto">
+    <?php include 'footer.php';?> 
+
+    <!--<footer class="site-footer mt-auto">
       <p>Sledite nam!</p>
       <div class="social-strip">
         <a href="https://www.youtube.com/@pojocidohtarji" target="_blank" rel="noreferrer"><img src="img/youtube.png" alt="YouTube"></a>
@@ -86,7 +91,7 @@
         <a href="https://www.instagram.com/pojoci.dohtarji/" target="_blank" rel="noreferrer"><img src="img/instagram.png" alt="Instagram"></a>
         <a href="https://open.spotify.com/" target="_blank" rel="noreferrer"><img src="img/spotify.png" alt="Spotify"></a>
       </div>
-    </footer>
+    </footer>-->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>  
 </body>
