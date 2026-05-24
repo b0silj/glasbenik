@@ -1,3 +1,4 @@
+<?php require_once 'baza.php'; ?>
 <!doctype html>
 <html lang="sl">
   <head>
