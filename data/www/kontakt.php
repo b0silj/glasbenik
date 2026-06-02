@@ -1,4 +1,54 @@
-<?php require_once 'baza.php'; ?>
+<?php 
+require_once 'baza.php'; 
+
+// post in insert
+$sporocilo_uspeh = $sporocilo_napaka = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $ime = $_POST['name'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $telefon = $_POST['phone'] ?? '';
+    $datum = $_POST['date'] ?? '';
+    $sporocilo = $_POST['message'] ?? '';
+
+    try {
+        // begin 
+        $povezava->beginTransaction();
+
+        // 1. vstavimo stranko v tabelo stranke
+        $sql_stranka = "INSERT INTO stranke (ime_priimek, email, telefon) VALUES (?, ?, ?)";
+        $stmt_stranka = $povezava->prepare($sql_stranka);
+        $stmt_stranka->execute([$ime, $email, $telefon]);
+        
+        // pridobimo ID pravkar vstavljene stranke
+        $stranka_id = $povezava->lastInsertId();
+
+        // 2. vstavimo datum v tabelo termini
+        if (!empty($datum)) {
+            $sql_termin = "INSERT INTO termini (stranka_id, datum_termina) VALUES (?, ?)";
+            $stmt_termin = $povezava->prepare($sql_termin);
+            $stmt_termin->execute([$stranka_id, $datum]);
+        }
+
+        // 3. vstavimo sporočilo v tabelo sporocila
+        if (!empty($sporocilo)) {
+            $sql_sporocilo = "INSERT INTO sporocila (stranka_id, vsebina) VALUES (?, ?)";
+            $stmt_sporocilo = $povezava->prepare($sql_sporocilo);
+            $stmt_sporocilo->execute([$stranka_id, $sporocilo]);
+        }
+
+        // potrdimo transakcijo
+        $povezava->commit();
+        $sporocilo_uspeh = "Vaše povpraševanje je bilo uspešno poslano!";
+
+    } catch(PDOException $e) {
+        // če je napaka prekličemo vse zapise transakcije
+        $povezava->rollBack();
+        $sporocilo_napaka = "Napaka pri pošiljanju: " . $e->getMessage();
+    }
+}
+?>
+
 <!doctype html>
 <html lang="sl">
   <head>
