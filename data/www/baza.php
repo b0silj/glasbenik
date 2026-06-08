@@ -14,8 +14,9 @@ $options = [
 
 try {
     $povezava = new PDO($dsn, $user, $pass, $options);
-    echo "<div class='alert alert-success text-center'>Povezava na bazo uspešna!</div>";
+    //echo "<div class='alert alert-success text-center'>Povezava na bazo uspešna!</div>";
 } catch (PDOException $e) {
-    echo "<div class='alert alert-danger text-center'>Povezava ni uspela: " . $e->getMessage() . "</div>";
+    //echo "<div class='alert alert-danger text-center'>Povezava ni uspela: " . $e->getMessage() . "</div>";
+    die("Povezava ni uspela.");
 }
 ?>

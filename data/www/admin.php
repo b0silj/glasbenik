@@ -3,29 +3,39 @@ require_once 'baza.php';
 
 // delete
 if (isset($_GET['izbrisi_id'])) {
-    $id_za_brisanje = $_GET['izbrisi_id'];
-    // ker imamo on delete cascade, izbris stranke pobriše termine in sporočila
-    $sql_del = "DELETE FROM stranke WHERE id = ?";
-    $stmt_del = $povezava->prepare($sql_del);
-    $stmt_del->execute([$id_za_brisanje]);
-    header("Location: admin.php"); // osveži stran
+    $id = $_GET['izbrisi_id'];
+    $sql = "DELETE FROM stranke WHERE id = ?";
+    $stmt = $povezava->prepare($sql);
+    $stmt->execute([$id]);
+    
+    header("Location: admin.php");
     exit;
 }
 
-// updejt - popravek vseh podatkov stranke
+// updejt
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['uredi_id'])) {
     $id = $_POST['uredi_id'];
-    $novo_ime = $_POST['novo_ime'];
-    $nov_email = $_POST['nov_email'];
-    $nov_telefon = $_POST['nov_telefon'];
+    $telefon = $_POST['nov_telefon'];
+    $datum = $_POST['nov_datum'];
     
-    // posodobimo ime_priimek, email in telefon v tabeli stranke
-    $sql_upd = "UPDATE stranke SET ime_priimek = ?, email = ?, telefon = ? WHERE id = ?";
-    $stmt_upd = $povezava->prepare($sql_upd);
-    $stmt_upd->execute([$novo_ime, $nov_email, $nov_telefon, $id]);
+    $sql_telefon = "UPDATE stranke SET telefon = ? WHERE id = ?";
+    $povezava->prepare($sql_telefon)->execute([$telefon, $id]);
+
+    $sql_datum = "UPDATE termini SET datum_termina = ? WHERE stranka_id = ?";
+    $stmt_datum = $povezava->prepare($sql_datum);
+    $stmt_datum->execute([$datum, $id]);
+    
+    // Če ni termina, ga vstavimo
+    if ($stmt_datum->rowCount() == 0 && !empty($datum)) {
+        $sql_insert = "INSERT INTO termini (stranka_id, datum_termina) VALUES (?, ?)";
+        $povezava->prepare($sql_insert)->execute([$id, $datum]);
+    }
+    
+    header("Location: admin.php");
+    exit;
 }
 
-// select združimo vse tri tabele z uporabo LEFT JOIN
+// select
 $sql = "SELECT s.id, s.ime_priimek, s.email, s.telefon, t.datum_termina, sp.vsebina 
         FROM stranke s 
         LEFT JOIN termini t ON s.id = t.stranka_id 
@@ -47,25 +57,29 @@ $povprasevanja = $povezava->query($sql)->fetchAll();
         <tr>
             <th>Ime in priimek</th>
             <th>Email</th>
-            <th>Želen termin</th>
             <th>Sporočilo</th>
-            <th>Telefon (Uredi)</th>
+            <th>Hitro urejanje (Telefon in Termin)</th>
             <th>Akcija</th>
         </tr>
         <?php foreach ($povprasevanja as $p): ?>
         <tr>
             <td><?= htmlspecialchars($p['ime_priimek']) ?></td>
             <td><?= htmlspecialchars($p['email']) ?></td>
-            <td><?= htmlspecialchars($p['datum_termina'] ?? 'Ni izbrano') ?></td>
             <td><?= htmlspecialchars($p['vsebina'] ?? 'Brez sporočila') ?></td>
             <td>
-                <form method="POST" style="display:flex; gap: 5px;">
+                <form method="POST" style="display:flex; flex-direction:column; gap: 5px;">
                     <input type="hidden" name="uredi_id" value="<?= $p['id'] ?>">
-                    <input type="text" name="nov_telefon" value="<?= htmlspecialchars($p['telefon']) ?>" style="width: 100px;">
-                    <button type="submit">Shrani</button>
+                    
+                    <label style="font-size: 12px; margin-bottom: -5px;">Telefon:</label>
+                    <input type="text" name="nov_telefon" value="<?= htmlspecialchars($p['telefon'] ?? '') ?>" style="width: 150px;">
+                    
+                    <label style="font-size: 12px; margin-bottom: -5px;">Datum termina:</label>
+                    <input type="date" name="nov_datum" value="<?= htmlspecialchars($p['datum_termina'] ?? '') ?>" style="width: 150px;">
+                    
+                    <button type="submit" style="width: 150px;">Shrani popravke</button>
                 </form>
             </td>
-            <td>
+            <td style="text-align: center;">
                 <a href="admin.php?izbrisi_id=<?= $p['id'] ?>" onclick="return confirm('Zagotovo izbrišem?')" style="color: red; font-weight: bold;">Izbriši</a>
             </td>
         </tr>
